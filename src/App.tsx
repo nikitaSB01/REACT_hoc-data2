@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import "./App.css";
 /* import List from "./components/List";
  */ import { withHighlight } from "./components/withHighlight";
