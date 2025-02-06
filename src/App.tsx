@@ -1,35 +1,40 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { useState } from "react";
+import "./App.css";
+/* import List from "./components/List";
+ */ import { withHighlight } from "./components/withHighlight";
 
-function App() {
-  const [count, setCount] = useState(0)
+export default function App() {
+  const [list /* setList */] = useState([
+    {
+      type: "video",
+      url: "https://www.youtube.com/embed/rN6nlNC9WQA",
+      views: 50,
+    },
+    {
+      type: "video",
+      url: "https://www.youtube.com/embed/dVkK36KOcqs",
+      views: 12,
+    },
+    {
+      type: "article",
+      title: "Невероятные события в неизвестном поселке...",
+      views: 175,
+    },
+    { type: "article", title: "Секретные данные были раскрыты!", views: 1532 },
+    {
+      type: "video",
+      url: "https://www.youtube.com/embed/TKmGU77INaM",
+      views: 4253,
+    },
+    {
+      type: "article",
+      title: "Кот Бегемот обладает невероятной...",
+      views: 12,
+    },
+  ]);
 
-  return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+  // Создаём новый массив, где элементы оборачиваются через HOC
+  const highlightedList = list.map((item, index) => withHighlight(item, index));
+
+  return <>{highlightedList}</>;
 }
-
-export default App
